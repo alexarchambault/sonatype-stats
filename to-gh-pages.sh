@@ -8,7 +8,6 @@ mkdir -p "$TARGET"
 cd "$TARGET"
 
 
-if false; then
 if [ -d gh-pages ]; then
   echo "Removing former gh-pages clone"
   rm -rf gh-pages
@@ -16,7 +15,6 @@ fi
 
 echo "Cloning"
 git clone "https://${GH_TOKEN}@github.com/$REPO.git" -b gh-pages gh-pages
-fi
 cd gh-pages
 
 git config user.name "Travis-CI"
