@@ -31,6 +31,5 @@ else
   git commit -m "$MSG"
 
   echo "Pushing changes"
-  #git push origin gh-pages
-  echo not
+  git push origin gh-pages
 fi
