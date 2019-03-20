@@ -14,5 +14,5 @@ else
   git commit -m "$MSG"
 
   echo "Pushing changes"
-  git push origin gh-pages
+  git push origin
 fi
