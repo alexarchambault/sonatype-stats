@@ -116,6 +116,6 @@ val html =
      |</script>
      |</body>
      |</html>
-   """.stripMargin
+     |""".stripMargin
 
 Files.write(Paths.get("stats.html"), html.getBytes("UTF-8"))
