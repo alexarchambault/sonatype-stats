@@ -84,29 +84,38 @@ def uniqueIpScatter(dir: File, name: String) = {
   Bar(x, y, name = name)
 }
 
-val plotBase = Paths.get("plots")
-Files.createDirectories(plotBase)
-
 val dataBase = Paths.get("data")
 
-val downloadsDest = plotBase.resolve("downloads.html")
-val uniqueIpsDest = plotBase.resolve("unique-ips.html")
-
-Files.deleteIfExists(downloadsDest)
-Files.deleteIfExists(uniqueIpsDest)
-
-Seq(
+val downloadsTraces = Seq(
   csvScatter(dataBase.resolve("stats").toFile, "# downloads")
-).plot(
-  path = downloadsDest.toString,
-  addSuffixIfExists = false
 )
 
-Seq(
+val uniqueIpsTraces = Seq(
   uniqueIpScatter(dataBase.resolve("unique-ips").toFile, "Unique IPs")
-).plot(
-  path = uniqueIpsDest.toString,
-  addSuffixIfExists = false
 )
 
 
+val dlDivId = "downloads"
+val ipDivId = "uniqueips"
+
+val layout = Layout()
+
+val html =
+  s"""<!DOCTYPE html>
+     |<html>
+     |<head>
+     |<title>${layout.title.getOrElse("plotly chart")}</title>
+     |<script src="https://cdn.plot.ly/plotly-${Plotly.plotlyVersion}.min.js"></script>
+     |</head>
+     |<body>
+     |<div id="$dlDivId"></div>
+     |<div id="$ipDivId"></div>
+     |<script>
+     |${Plotly.jsSnippet(dlDivId, downloadsTraces, layout)}
+     |${Plotly.jsSnippet(ipDivId, uniqueIpsTraces, layout)}
+     |</script>
+     |</body>
+     |</html>
+   """.stripMargin
+
+Files.write(Paths.get("stats.html"), html.getBytes("UTF-8"))
