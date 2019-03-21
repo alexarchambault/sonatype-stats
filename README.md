@@ -14,7 +14,21 @@ In your clone settings on Travis CI, add the following environment variables (th
 
 ## Cron job
 
-In the Travis CI settings of your clone, add a daily project for the `stats` branch.
+From GitHub, navigate to your clone, then to its `stats` branch. Add an empty
+file, to trigger a Travis CI job for the `stats` branch.
+
+Then in the Travis CI settings of your clone, in the cron section,
+add a daily cron for the `stats` branch.
+
+## GitHub page
+
+Once the Travis CI job ran once, a page with the total downloads and unique IPs,
+per month, should have been pushed to the `gh-pages` branch of the repository.
+
+Navigate to it, at
+```
+https://your-user-name.github.io/sonatype-stats
+```
 
 # Test it locally
 
