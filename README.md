@@ -1,3 +1,5 @@
+# sonatype-stats
+
 The scripts in this repository allow to fetch and regularly update project
 statistics from Sonatype. You can run them either [locally](#test-it-locally),
 or from a [cron job on Travis CI](#cron-job-on-travis-ci).
