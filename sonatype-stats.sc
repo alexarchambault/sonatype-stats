@@ -146,6 +146,16 @@ val statsData = Data(
   Params.organization
 )
 
+val perArtifactUniqueIpsData = Data(
+  Params.base.resolve("per-artifact-unique-ips"),
+  "csv",
+  _.isEmpty,
+  "slices_csv",
+  "ip",
+  Params.projId,
+  Params.organization
+)
+
 val uniqueIpsData = Data(
   Params.base.resolve("unique-ips"),
   "json",
@@ -156,7 +166,7 @@ val uniqueIpsData = Data(
   Params.organization
 )
 
-for (data <- Seq(statsData, uniqueIpsData)) {
+for (data <- Seq(statsData, perArtifactUniqueIpsData, uniqueIpsData)) {
   val it = Iterator.iterate(Params.start)(_.minusMonths(1L))
   val processed = data.process(it)
     .takeWhile {
