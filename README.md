@@ -2,7 +2,11 @@
 
 The scripts in this repository allow to fetch and regularly update project
 statistics from Sonatype. You can run them either [locally](#test-it-locally),
-or from a [cron job on Travis CI](#cron-job-on-travis-ci).
+or from a [cron job on Travis CI](#cron-job-on-travis-ci). They output raw data
+(CSV and JSON), and an HTML file displaying total number of downloads and unique
+IPs per month.
+
+For example, see these [graphs for the coursier organization](https://coursier.github.io/sonatype-stats).
 
 ## Test it locally
 
