@@ -20,8 +20,9 @@ cd gh-pages
 git config user.name "Travis-CI"
 git config user.email "invalid@travis-ci.com"
 
-cp "$DIR/stats.html" index.html
-git add -- index.html
+GH_PAGES_DEST="${GH_PAGES_DEST:-"index.html"}"
+cp "$DIR/stats.html" "$GH_PAGES_DEST"
+git add -- "$GH_PAGES_DEST"
 
 MSG="Update Sonatype statistics"
 
