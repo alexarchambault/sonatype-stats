@@ -55,10 +55,11 @@ object Plots {
     }
     def y = byMonth0.map(_._2)
 
-    Bar(x, y, name = name)
+    Bar(x, y)
+      .withName(name)
   }
 
-  def uniqueIpScatter(dir: File, name: String) = {
+  def uniqueIpData(dir: File): (Seq[plotly.element.LocalDateTime], Seq[Int]) = {
 
     val data = for {
 
@@ -81,7 +82,13 @@ object Plots {
     }
     def y = data.map(_._2)
 
-    Bar(x, y, name = name)
+    (x, y)
+  }
+
+  def uniqueIpScatter(dir: File, name: String): Bar = {
+    val (x, y) = uniqueIpData(dir)
+    Bar(x, y)
+      .withName(name)
   }
 
 }
